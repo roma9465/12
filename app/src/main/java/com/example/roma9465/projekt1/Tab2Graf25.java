@@ -17,7 +17,6 @@ import android.os.StrictMode;
 
 import java.util.ArrayList;
 
-
 public class Tab2Graf25 extends Fragment {
     ArrayList inTemps = new ArrayList<>();
     String fetched;
@@ -28,11 +27,7 @@ public class Tab2Graf25 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-
-                View view = inflater.inflate(R.layout.tab2, container, false);
-
-
-
+        View view = inflater.inflate(R.layout.tab2, container, false);
 
         String[] hours = {"00.00", "01.00", "02.00", "03.00", "04.00", "05.00", "06.00", "07.00",
                 "08.00", "09.00", "10.00", "11.00", "12.00", "13.00", "14.00", "15.00", "16.00",
@@ -56,13 +51,19 @@ public class Tab2Graf25 extends Fragment {
         graph.getViewport().setXAxisBoundsManual(true);
         graph.getViewport().setYAxisBoundsManual(true);
 
-        for (int i = 0; i < 23; i++) {
+        for (int i = 0; i < 1; i++) {
+
+
+
             new AsyncTask<Integer, Void, String>() {
                 @Override
                 protected String doInBackground(Integer... params) {
                     //här hämtas koden via tempFetch
                     fetched =new TempFetch().getTemp();
                     System.out.print("******************************************************");
+
+
+
 
                     return fetched;
                 }
@@ -80,17 +81,19 @@ public class Tab2Graf25 extends Fragment {
             if ( inTemps.get(i) instanceof Double ) {
                 y = (Double) inTemps.get(i);
             } else {
-                y = 0.0;
+                y = 10.5;
             }
-            series.appendData(new DataPoint(x, y), true, 23);
+            System.err.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+            series.appendData(new DataPoint(x, y), true, inTemps.size());
 
         }
+
         return view;
+
 
     }
 
 
 }
-
 
 
