@@ -20,9 +20,17 @@ public class TempFetch {
 
     public String getTemp() {
         String text = run("tdtool -l").toString();
-        return text.split("\\n")[9].split("\\t")[3].substring(0, text.length() - 1);
+        /*String[] t = text.split("\\n");
+        for (int i = 0; i < t.length; i++) {
+            System.out.println(i + " " + t[i]);
+        }
 
-
+        String[] b = t[7].split("\\t");
+        for (int i = 0; i < b.length; i++) {
+            System.out.println(i + " " + b[i]);
+        } */
+        String degree = (text.split("\\n")[7].split("\\t")[3]);//.substring(0, text.length() - 1));
+        return degree.substring(0, degree.length() -1);
     }
     public StringBuilder run (String command) {
         String hostname = "130.237.177.204";
@@ -59,7 +67,7 @@ public class TempFetch {
                 text.append(line + "\n");
                 if (line == null)
                     break;
-                System.out.println(line);
+                //System.out.println(line);
 
                 //skriver ut värdena från sensorerna i run
             }
@@ -76,5 +84,6 @@ public class TempFetch {
         return text;
     }
 }
+
 
 
